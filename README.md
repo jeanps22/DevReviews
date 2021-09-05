@@ -1,11 +1,11 @@
 # DevReviews
 Foi desenvolvida uma aplicação completa, utilizando os conceitos de C#, Listas e Programação Orientada a Objetos e uma API REST completa de gerenciamento de Produtos e Avaliações dos clientes.
 
-Ferramentas utilizadas
+#### Tecnologia utilidas nesse projéto:
 
-C#
-
-AutoMapper
-
-Visual Studio Code
-
+- ASP.NET Core com .NET 5
+- Entity Framework Core
+- Swagger
+- AutoMapper
+- Injeção de Dependência
+- Programação Orientada a Objetos

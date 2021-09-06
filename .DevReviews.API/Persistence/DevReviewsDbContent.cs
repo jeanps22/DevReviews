@@ -18,11 +18,17 @@ namespace Persistence
             {
                 p.ToTable("tb_Product");
                 p.HasKey(p => p.Id);
+                p
+                    .HasMany(pp => pp.Reviews)
+                    .WithOne()
+                    .HasForeignKey(r => r.ProductId)
+                    .OnDelete(DeleteBehavior.Restrict);
+                ;
             });
 
             modelBuilder.Entity<ProductReview>(pr =>
             {
-                pr.ToTable("tb_Product");
+                pr.ToTable("tb_ProductReviews");
                 pr.HasKey(p => p.Id);
                 pr.Property(p => p.Author)
                     .HasMaxLength(50)

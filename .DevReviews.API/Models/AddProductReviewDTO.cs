@@ -6,6 +6,8 @@ namespace Controllers
 
         public string Author { get; set; }
 
+        public string Name { get; set; }
+
         public string Comments { get; set; }
     }
 }

@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Persistence.Repository;
 using Profiles;
 
 namespace _DevReviews.API
@@ -29,7 +31,8 @@ namespace _DevReviews.API
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetValue<String>("DevReviewsCn");
-            services.AddSingleton<DevReviewsDbContent>();
+            services.AddDbContext<DevReviewsDbContext>(o =>  o.UseSqlServer(connectionString) );
+            services.AddScoped<IProductRepository,ProductRepository>();
             services.AddAutoMapper(typeof(ProductProfile));
             services.AddControllers();
             services.AddSwaggerGen(c =>

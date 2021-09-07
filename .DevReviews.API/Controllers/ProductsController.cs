@@ -3,11 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Persistence;
 using Persistence.Repository;
+using Serilog;
 
 namespace Controllers
 {
@@ -63,10 +65,27 @@ namespace Controllers
             return Ok(productDetails);
         }
         //Post
+        /// <summary>Cadastro de Produto</summary>
+        /// <remarks>Requisição:
+        ///{
+        ///"Title": "Salgadinho"
+        ///"Description": "Salgadinho doce"
+        ///"Price": 7
+        ///}
+        ///</remarks>
+        /// <param name="inputModel">Objeto com dados do Produto</param>
+        /// <returns>Objeto Recem Criado</returns>
+        ///<response code="201" >Sucesso</response>
+        ///<response code="400" >Dados Invalidos</response>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> post(AddProductDTO inputModel)
         {
             var product = new Product(inputModel.Title, inputModel.Description, inputModel.Price);
+
+            Log.Information("MetodoPostCHamadao");
+
             await _repository.AddAsync(product);
             return CreatedAtAction(nameof(getById), new { id = product.Id }, inputModel);
         }
@@ -88,7 +107,6 @@ namespace Controllers
             }
 
             products.Update(inputModel.Description, inputModel.Price);
-
             //_dbContext.Products.Update(products);
             //_dbContext.Entry(products).State = EntityState.Modified;
             await _repository.UpdateAsync(products);

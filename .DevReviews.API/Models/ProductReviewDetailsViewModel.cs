@@ -24,6 +24,6 @@ namespace Models
 
         public int Rating { get; private set; }
 
-        public DateTime Registered { get;private set; }
+        public DateTime Registered { get; private set; }
     }
 }

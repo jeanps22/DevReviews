@@ -9,10 +9,10 @@ namespace Profiles
     {
         public ProductProfile()
         {
-            CreateMap<ProductReview,ProductReviewViewModel>();
+            CreateMap<ProductReview, ProductReviewViewModel>();
             CreateMap<ProductReview, ProductReviewDetailsViewModel>();
-            CreateMap<Product,ProductViewModel>();
-            CreateMap<Product,ProductDetails>();
+            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ProductDetails>();
         }
     }
 }

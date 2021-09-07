@@ -26,7 +26,8 @@ namespace Entity
 
         public List<ProductReview> Reviews { get; private set; }
 
-        public void AddReview(ProductReview review){
+        public void AddReview(ProductReview review)
+        {
             Reviews.Add(review);
         }
 

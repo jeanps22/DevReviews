@@ -40,7 +40,7 @@ namespace Controllers
         public async Task<IActionResult> Post(int productId, AddProductReviewDTO inputModel)
         {
             //var productReview = _mapper.Map<AddProductReviewDTO,ProductReview>(inputModel);
-            var productReview = new ProductReview(inputModel.Author,inputModel.Name,inputModel.Comments,inputModel.Rating,productId);
+            var productReview = new ProductReview(inputModel.Author, inputModel.Name, inputModel.Comments, inputModel.Rating, productId);
             await _repository.AddReviewAsync(productReview);
             return CreatedAtAction(nameof(getById), new { id = 1, productId = productId }, inputModel);
         }

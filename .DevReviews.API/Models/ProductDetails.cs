@@ -45,10 +45,10 @@ namespace Models
 
         public string Author { get; private set; }
 
-        public int Rating { get;private set; }
+        public int Rating { get; private set; }
 
-        public string Comments { get;private set; }
+        public string Comments { get; private set; }
 
-        public DateTime Registered { get;private set; }
+        public DateTime Registered { get; private set; }
     }
 }
